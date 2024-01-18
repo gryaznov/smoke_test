@@ -53,8 +53,9 @@ defmodule SmokeTest do
 
   @spec in_parallel(String.t(), non_neg_integer()) :: [response()]
   defp in_parallel(url, count) do
+    Concurrency.start()
     Concurrency.seed(&Client.Request.perform/1, [url], count)
-    |> Concurrency.harvest()
+    Concurrency.harvest()
   end
 
   @spec reduce_output([Request.success() | Request.failure()]) :: map()
