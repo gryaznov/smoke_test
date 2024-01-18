@@ -1,21 +1,28 @@
 # SmokeTest
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `smoke_test` to your list of dependencies in `mix.exs`:
+### Usage
 
 ```elixir
-def deps do
-  [
-    {:smoke_test, "~> 0.1.0"}
-  ]
-end
+$ iex -S mix
+iex(1)> SmokeTest.run |> IO.puts
+
+Result:
+- requests made: 1;
+- succeed: 1;
+- failed: 0;
+- avg. time per request: 137ms;
+- time (in ms): 137;
+
+:ok
+
+iex(2)> SmokeTest.run("https://httpbin.org/get", sequence: 1, parallel: 199) |> IO.puts
+
+Result:
+- requests made: 200;
+- succeed: 200;
+- failed: 0;
+- avg. time per request: 230ms;
+- time (in ms): 135, 1006, 134, 137, 140...
+
+:ok
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/smoke_test>.
-
